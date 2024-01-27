@@ -53,7 +53,7 @@ def inject_score(reviewer, deck_id):
             // If it doesn't exist, create it and set its properties
             scoreDiv = document.createElement('div');
             scoreDiv.id = 'anki-score';
-            scoreDiv.style.textAlign = 'center';
+            scoreDiv.style.textAlign = 'left';
             scoreDiv.style.position = 'absolute';
             scoreDiv.style.bottom = '0';
             scoreDiv.style.width = '98%';
