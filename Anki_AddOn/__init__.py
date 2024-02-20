@@ -5,8 +5,7 @@ import json
 
 # Load scores into config file:
 def load_scores() -> dict:
-    scores = {str : dict}
-    scores = mw.col.get_config("scores", default = {})
+    scores = mw.col.get_config("scores", default={})
     return scores
 
 def update_score(reviewer, ease):
@@ -67,11 +66,10 @@ def inject_score(reviewer, deck_id):
 
 def on_profile_loaded():
     # Set all scores to 0
-    scores = {str, dict}
-    scores = mw.col.get_config("scores", default = 0)
-    for deck_id in scores:
-        scores[deck_id]["score"] = 0
-    scores = mw.col.set_config("scores", scores)
+    scores = load_scores()  # Laden der aktuellen Punktzahlen
+    for deck_id in scores.keys():  # Iteriere über die Schlüssel des Dictionaries
+        scores[deck_id]["score"] = 0  # Setze den Punktestand auf 0 zurück
+    mw.col.set_config("scores", scores)  # Aktualisiere die Punktzahlen in der Konfigurationsdatei
 
     Reviewer._answerCard = wrap(Reviewer._answerCard, update_score, "after")
 
